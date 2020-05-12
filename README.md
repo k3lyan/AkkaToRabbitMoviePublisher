@@ -16,4 +16,4 @@ You need to have sbt>=1.x and docker-compose>=1.xx.x installed.
 4. Once downloaded, launch locally your RabbitMQ instance: ```docker-compose up```
 5. In another terminal window, run your scala App using sbt (the default log level remains at DEBUG but you canmodify it in src/main/resources/application.conf): ```sbt run```
 
-You can check that your targeted data has been published to your local RabbitMQ instance with the [UI manager] (http://localhost:15672/). If you don't need your local RabbitMQ instance anymore, don't forget to shut it down: ```docker-compose down```.
+You can check that your targeted data has been published to your local RabbitMQ instance with the [UI manager](http://localhost:15672/). If you don't need your local RabbitMQ instance anymore, don't forget to shut it down: ```docker-compose down```.
