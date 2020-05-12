@@ -15,16 +15,7 @@ import scala.util.{Failure, Success}
 
 object AkkaToRabbit extends App {
   implicit val system = ActorSystem("AkkaToRabbit")
-  // implicit val actorSystem: ActorSystem[Nothing] = ActorSystem[Nothing](Behaviors.empty, "alpakka-samples")
   implicit val dispatcher = system.dispatchers.lookup("akka.actor.dedicated-dispatcher")
-
-  val sourceIO = FileIO.fromPath(Paths.get("src/main/resources/data/title.basics.tsv")).async
-
-  def filterSource(source: Source[ByteString, Future[IOResult]]) = source
-    .via(CsvParsing.lineScanner(delimiter='\t')).async
-    .via(CsvToMap.toMapAsStrings()).async
-    .filter(fitWithProductRequirements).async
-    .map(getTargetedValue).async
 
   val connectionProvider = RabbitMQConnect.getConnection
   val queueName = RabbitMQConnect.RABBITMQ_QUEUE
@@ -37,7 +28,7 @@ object AkkaToRabbit extends App {
         .withDeclaration(queueDeclaration)
     )
 
-  val sinkWriter: Future[Done] = filterSource(sourceIO).runWith(amqpSink)
+  val sinkWriter: Future[Done] = AkkaHTTPSource.filteredHTTPSource.runWith(amqpSink)
   sinkWriter.onComplete {
     case Success(done) =>
       println(s"$done")

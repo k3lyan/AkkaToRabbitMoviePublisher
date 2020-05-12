@@ -6,12 +6,14 @@ scalaVersion := "2.13.2"
 
 lazy val akkaVersion = "2.6.5"
 lazy val scalaTestVersion = "3.1.1"
+lazy val AkkaHttpVersion = "10.1.11"
 
 libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-stream" % akkaVersion,
   "com.typesafe.akka" %% "akka-stream-testkit" % akkaVersion,
   "com.typesafe.akka" %% "akka-testkit" % akkaVersion,
   "org.scalatest" %% "scalatest" % scalaTestVersion,
+  "com.typesafe.akka" %% "akka-http" % AkkaHttpVersion,
   "com.lightbend.akka" %% "akka-stream-alpakka-csv" % "2.0.0",
   "com.lightbend.akka" %% "akka-stream-alpakka-amqp" % "2.0.0"
 )
