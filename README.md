@@ -17,3 +17,5 @@ You need to have sbt>=1.x and docker-compose>=1.xx.x installed.
 5. In another terminal window, run your scala App using sbt (the default log level remains at DEBUG but you canmodify it in src/main/resources/application.conf): ```sbt run```
 
 You can check that your targeted data has been published to your local RabbitMQ instance with the [UI manager](http://localhost:15672/). If you don't need your local RabbitMQ instance anymore, don't forget to shut it down: ```docker-compose down```.
+ ## Modify product requiements
+ You can adjust the product requirements by changing the fields,values to filter and the target to publish by modifying both ProductRequirements.scala and application.conf. Make sure they match with the [IMDb datasets data models](https://www.imdb.com/interfaces/).
